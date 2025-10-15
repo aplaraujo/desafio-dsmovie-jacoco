@@ -44,14 +44,10 @@ public class MovieService {
 
 	@Transactional
 	public MovieDTO update(Long id, MovieDTO dto) {
-		try {
-			MovieEntity entity = repository.getReferenceById(id);
-			copyDtoToEntity(dto, entity);
-			entity = repository.save(entity);
-			return new MovieDTO(entity);
-		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Recurso não encontrado");
-		}
+        MovieEntity entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Movie not found with id: " + id));
+        copyDtoToEntity(dto, entity);
+        entity = repository.save(entity);
+        return new MovieDTO(entity);
 	}
 
 	public void delete(Long id) {
