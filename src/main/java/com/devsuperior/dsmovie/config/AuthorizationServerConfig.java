@@ -53,7 +53,8 @@ import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
 @Configuration
-public class AuthorizationServerConfig {
+public class
+AuthorizationServerConfig {
 
 	@Value("${security.client-id}")
 	private String clientId;
